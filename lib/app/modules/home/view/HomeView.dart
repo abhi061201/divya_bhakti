@@ -1,155 +1,460 @@
-import 'package:divya_bhakti/app/global/audioplayers.dart';
-import 'package:divya_bhakti/app/modules/Aarti/view/aarti_view.dart';
-import 'package:divya_bhakti/app/modules/home/controller/HomeController.dart';
+import 'package:divya_bhakti/app/Route/appRoute.dart';
+import 'package:divya_bhakti/app/modules/global/appcolor.dart';
+import 'package:divya_bhakti/app/modules/global/customBottomNavigationBar.dart';
+import 'package:divya_bhakti/app/modules/global/global_button.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 class HomeView extends StatelessWidget {
-  HomeView({super.key, required this.audiocontroller});
-  Audio_player audiocontroller;
+  HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.put(HomeController());
-    // Audio_player audiocontroller = Get.put(Audio_player());
     return Container(
       height: Get.height,
       width: Get.width,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xffecb033),
-            Color(0xffeb7530),
-          ],
-        ),
+        image: DecorationImage(
+            image: AssetImage(
+              'assets/images/background 2.png',
+            ),
+            fit: BoxFit.fill),
       ),
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Audio_player().pause();
-          },
-          child: Icon(
-            Icons.pause,
-          ),
-        ),
+        bottomNavigationBar: CustomBottomNavigationBar(),
         backgroundColor: Colors.transparent,
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: (){
-        //     audiocontroller.stop();
-        //   },
-        //   child: Icon(Icons.more_horiz),
-        // ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: Get.height * 0.5,
-                decoration: BoxDecoration(
-                  border: Border(),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(
-                        40,
-                      ),
-                      bottomRight: Radius.circular(
-                        40,
-                      )),
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/maa alone.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Wrap(
-                alignment: WrapAlignment.center,
-                children: [
-                  CustomWidget(
-                    title: 'Naam Jap',
-                    imageLocation: 'assets/images/naam jap.png',
-                    callback: () {},
-                  ),
-                  CustomWidget(
-                    title: 'Pooja Vidhi',
-                    imageLocation: 'assets/images/pooja-vidhi_new.png',
-                    callback: () {},
-                  ),
-                  CustomWidget(
-                    title: 'Aarti',
-                    imageLocation: 'assets/images/aarti.jpg',
-                    callback: () {
-                      Get.to(Aarti_view());
-                    },
-                  )
+        body: Opacity(
+          opacity: 0.8,
+          child: Container(
+            height: Get.height,
+            width: Get.width,
+            // margin: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              // color: Colors.red,
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color.fromRGBO(251, 14, 2, 1),
+                  Color(0xffC7451B),
                 ],
               ),
-            ],
+            ),
+            child: SingleChildScrollView(
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          'Tuesday, Sept 25 ',
+                          style: TextStyle(
+                            color: appcolor.yellowColor,
+                          ),
+                        ),
+                        Spacer(),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.notifications,
+                            size: 20,
+                            color: appcolor.yellowColor,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.settings,
+                            size: 20,
+                            color: appcolor.yellowColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    // image container
+                    Material(
+                      elevation: 5,
+                      borderRadius: BorderRadius.circular(5),
+                      child: Container(
+                        height: Get.height * 0.2,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              'assets/images/background 2.png',
+                            ),
+                            fit: BoxFit.fill,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Jai Mata di',
+                                  style: TextStyle(
+                                    color: appcolor.yellowColor,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  'Aum Saravana Bhava',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                InkWell(
+                                  onTap: (){
+                                    Get.toNamed(Routes.JapaView);
+                                  },
+                                  child: blockButton(
+                                    
+                                    title: 'Start Jap',
+                                    fontsize: 16,
+                                    backgroundColor: appcolor.redbutton,
+                                    borderColor: appcolor.yellowColor,
+                                    borderRadius: 3,
+                                    // height: Get.height * 0.06,
+                                    // width: Get.width * 0.1,
+                                  ),
+                                ),
+                              ],
+                            ).paddingOnly(left: 10, top: 20),
+                            Container(
+                              height: Get.height * 0.2,
+                              child: Image(
+                                image: AssetImage(
+                                  'assets/images/mataji face.png',
+                                ),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Your Insights',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ).paddingOnly(top: 15, bottom: 5, left: 10),
+                    Container(
+                      height: Get.height * 0.13,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          rowwidget(title: 'Japa Counts', count: '121'),
+                          rowwidget(title: 'Japa Counts', count: '121'),
+                          rowwidget(title: 'Japa Counts', count: '121'),
+                        ],
+                      ),
+                    ),
+
+                    blockButton(
+                      title: 'View Insights',
+                      fontsize: 16,
+                      backgroundColor: appcolor.redbutton,
+                      borderColor: appcolor.yellowColor,
+                      borderRadius: 3,
+                      // height: Get.height * 0.04,
+                      width: Get.width * 0.3,
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'My Routines',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ).paddingOnly(top: 15, bottom: 5, left: 10),
+                    Container(
+                      height: Get.height * 0.13,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: Get.height * 0.08,
+                            width: Get.width * 0.4,
+                            decoration: BoxDecoration(
+                              color: appcolor.redlow,
+                              border: Border.all(
+                                color: appcolor.yellowColor,
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.calendar_month,
+                                  color: appcolor.yellowColor,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  'Add Routine',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'My Shortcuts',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ).paddingOnly(top: 15, bottom: 5, left: 10),
+                    Container(
+                      height: Get.height * 0.13,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            height: Get.height * 0.15,
+                            width: Get.width * 0.4,
+                            decoration: BoxDecoration(
+                              color: appcolor.redlow,
+                              border: Border.all(
+                                color: appcolor.yellowColor,
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.calendar,
+                                  color: appcolor.yellowColor,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  'Add Shortcuts',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: Get.height * 0.15,
+                            width: Get.width * 0.4,
+                            decoration: BoxDecoration(
+                              color: appcolor.redlow,
+                              border: Border.all(
+                                color: appcolor.yellowColor,
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.calendar_month,
+                                  color: appcolor.yellowColor,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  'Add Manual \nSession',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ).paddingSymmetric(
+                  horizontal: 15,
+                ),
+              ),
+            ),
           ),
         ),
       ),
     );
   }
+}
 
-  Widget CustomWidget(
-      {String? title, Callback? callback, String? imageLocation}) {
-    return InkWell(
-      onTap: callback,
-      child: Container(
-        // height: Get.height*0.15,
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.symmetric(
-          vertical: 5,
-          horizontal: 5,
-        ),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.redAccent
-              // top: BorderSide(
-              //   color: Colors.redAccent,
-              // ),
-              // right: BorderSide(
-              //   color: Colors.redAccent,
-              // ),
-              ),
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(12),
-              bottomLeft: Radius.circular(12),
-              topLeft: Radius.circular(
-                4,
-              ),
-              bottomRight: Radius.circular(
-                4,
-              )),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 10,
-              ),
-              height: Get.height * 0.14,
-              width: Get.width * 0.3,
-              child: Image(
-                image: AssetImage(
-                  '${imageLocation}',
+Widget textfield({
+  String? hintText,
+  TextEditingController? controller,
+  TextInputType? keyboardType,
+  bool? showPassword,
+  IconData? iconData,
+  int? keyLength,
+}) {
+  return Container(
+    width: Get.width * 0.75,
+    child: Row(
+      children: [
+        Expanded(
+          child: TextFormField(
+            keyboardType: keyboardType,
+            style: TextStyle(
+              color: Colors.white,
+            ),
+            maxLength: keyLength,
+            cursorColor: Colors.white,
+            decoration: InputDecoration(
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.white,
                 ),
-                fit: BoxFit.fill,
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.white,
+                ),
+              ),
+              // counterStyle: TextStyle(color: Colors.white),
+              counter: Offstage(),
+              hintText: '${hintText}',
+              hintStyle: TextStyle(
+                color: Colors.white,
+              ),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 0,
               ),
             ),
-            Text(
-              '${title}',
-              style: TextStyle(
-                color: Colors.red,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          ],
+          ),
         ),
+        // Icon(iconData,),
+      ],
+    ),
+  );
+}
+
+Widget button({
+  String? title,
+  IconData? icondata,
+  Callback? callback,
+  Color? iconcolor,
+}) {
+  return InkWell(
+    onTap: callback,
+    child: Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 10,
       ),
-    );
-  }
+      decoration: BoxDecoration(
+        color: Color(0xffFFD600),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      width: Get.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icondata,
+            color: iconcolor,
+            size: 20,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            '$title',
+            style: TextStyle(color: Colors.black),
+          )
+        ],
+      ).paddingSymmetric(
+        vertical: 5,
+        horizontal: 10,
+      ),
+    ),
+  );
+}
+
+Widget rowwidget({String? title, String? count}) {
+  return Container(
+    height: Get.height * 0.11,
+    width: Get.width * 0.28,
+    decoration: BoxDecoration(
+      color: appcolor.redlow,
+      border: Border.all(
+        color: appcolor.yellowColor,
+      ),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          '${count}',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          '${title}',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    ),
+  );
 }

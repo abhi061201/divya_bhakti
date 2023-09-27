@@ -7,12 +7,11 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 
 void main() async {
-  // WidgetsBinding widgetsBinding = 
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // niche vala splash screen k liye h 
-  Future.delayed(Duration(seconds: 2)).then((value) {
+  Future.delayed(Duration(seconds: 1)).then((value) {
     FlutterNativeSplash.remove();
     runApp(Divya_Bhakti());
   });
@@ -24,11 +23,14 @@ class Divya_Bhakti extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Imprima'
+      ),
       debugShowCheckedModeBanner: false,
       getPages: appPages.route,
       // home: Splash_Screen(),
-      initialRoute: Routes.SPLASHSCREEN,
-      defaultTransition: Transition.leftToRightWithFade,
+      initialRoute: Routes.STARTING_VIEW,
+      defaultTransition: Transition.rightToLeftWithFade,
       transitionDuration:Duration(seconds: 1),
     );
   }

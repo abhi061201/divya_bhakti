@@ -31,16 +31,29 @@ dependencies:
   firebase_storage: ^11.2.6
   cloud_firestore: ^4.8.5
 
+  #for icons
+  font_awesome_flutter: ^10.5.0
+
+  #for taking formated data
+  intl: ^0.18.1
+
   
 
-
-# native splash screen file
 flutter_native_splash:
-  # color: "#ffffff"
-  image: 'assets/images/logo.png'
-  android: true
-  ios: true
-  background_image: 'assets/images/bg.jpg'
+  background_image: "assets/images/Splash Screen.png"
+# native splash screen file
+# flutter_native_splash:
+#   # color: "#ffffff"
+#   image: "assets/images/divya-bhakti-logo-[Recovered] (1) 1.png"
+#   background_image: "assets/images/Rectangle 3.png"
+#   background_image_dark: "assets/images/Rectangle 3.png"
+#   image_dark: "assets/images/divya-bhakti-logo-[Recovered] (1) 1.png"
+#   android_12:
+#     image: "assets/images/divya-bhakti-logo-[Recovered] (1) 1.png"
+#     background_image: "assets/images/Rectangle 3.png"
+#   android: true
+#   ios: true
+  
 
 
 dev_dependencies:
@@ -62,3 +75,9 @@ flutter:
     - assets/audio/
     
   #   - images/a_dot_ham.jpeg
+  fonts:
+    - family: Imprima
+      fonts:
+        - asset: assets/fonts/Imprima-Regular.ttf
+    
+  

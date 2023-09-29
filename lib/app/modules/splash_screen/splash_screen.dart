@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:divya_bhakti/app/Route/appRoute.dart';
 import 'package:divya_bhakti/app/Route/customRoute.dart';
 import 'package:divya_bhakti/app/modules/global/audioplayers.dart';
 import 'package:divya_bhakti/app/modules/home/view/HomeView.dart';
@@ -28,9 +29,7 @@ class _Splash_ScreenState extends State<Splash_Screen> {
     //   print(e.toString());
     // }
     Timer(Duration(seconds: 3), () {
-      Get.off(HomeView(
-        // audiocontroller: audiocontroller,
-      ));
+      Get.offNamed(Routes.STARTING_VIEW);
     });
     super.initState();
   }
@@ -43,11 +42,10 @@ class _Splash_ScreenState extends State<Splash_Screen> {
       decoration: BoxDecoration(
         image: DecorationImage(
             image: AssetImage(
-              'assets/images/24368866.jpg',
+              'assets/images/Splash Screen.png',
             ),
             fit: BoxFit.fill),
       ),
-      child: Image(image: AssetImage('assets/images/om.png')),
     ));
   }
 }

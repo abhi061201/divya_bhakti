@@ -37,13 +37,15 @@ dependencies:
   #for taking formated data
   intl: ^0.18.1
 
+  flip_card: ^0.7.0
+
   
 
 flutter_native_splash:
   background_image: "assets/images/Splash Screen.png"
 # native splash screen file
 # flutter_native_splash:
-#   # color: "#ffffff"
+#   color: "#ffffff"
 #   image: "assets/images/divya-bhakti-logo-[Recovered] (1) 1.png"
 #   background_image: "assets/images/Rectangle 3.png"
 #   background_image_dark: "assets/images/Rectangle 3.png"

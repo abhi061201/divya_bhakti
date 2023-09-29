@@ -9,5 +9,6 @@ Routes {
   static const LOGIN_VIEW= '/login_view';
   static const HomeView= '/home_view';
   static const JapaView= '/japa_view';
+  static const SettingView= '/Setting_view';
   
 }

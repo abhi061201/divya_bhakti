@@ -7,8 +7,6 @@ class Japacontroller extends GetxController {
   RxList<Widget> list = <Widget>[].obs;
   RxList<Widget> pageList= <Widget>[].obs;
 
-  
-
   RxInt Japacounter = 0.obs;
   void increaseJapaCounter() {
     Japacounter.value++;

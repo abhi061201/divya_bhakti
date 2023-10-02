@@ -1,23 +1,25 @@
 import 'dart:developer';
 import 'dart:math' as math;
 import 'package:divya_bhakti/app/Route/appRoute.dart';
+import 'package:divya_bhakti/app/modules/Naam%20Jap/controller/japaController.dart';
 import 'package:divya_bhakti/app/modules/global/appcolor.dart';
 import 'package:divya_bhakti/app/modules/global/customBottomNavigationBar.dart';
 import 'package:divya_bhakti/app/modules/global/global_button.dart';
-import 'package:divya_bhakti/app/modules/japa%20count/controller/japaController.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
-class JapaView extends StatefulWidget {
-  JapaView({super.key});
+class JapaView_duplicate extends StatefulWidget {
+  JapaView_duplicate({super.key});
 
   @override
-  State<JapaView> createState() => _JapaViewState();
+  State<JapaView_duplicate> createState() => _JapaView_duplicateState();
 }
 
-class _JapaViewState extends State<JapaView> with TickerProviderStateMixin {
+class _JapaView_duplicateState extends State<JapaView_duplicate>
+    with TickerProviderStateMixin {
   Japacontroller controller = Get.put(Japacontroller());
   late final AnimationController animationController = AnimationController(
     vsync: this,
@@ -327,31 +329,29 @@ class _JapaViewState extends State<JapaView> with TickerProviderStateMixin {
                                     // button container
                                   ],
                                 ),
-                                AnimatedBuilder(
-                                  builder:
-                                      (BuildContext context, Widget? mychild) {
-                                    return Transform.rotate(
-                                      angle: animationController.value *
-                                          2.0 *
-                                          math.pi,
-                                      child: mychild,
-                                    );
-                                  },
-                                  animation: animationController,
-                                  child: Container(
-                                    height: Get.height * 0.8,
-                                    width: Get.width,
-                                    child: Image(
-                                      image: AssetImage(
-                                        'assets/images/image 1.png',
-                                      ),
-                                    ),
-                                  ),
-                                ),
                                 Wrap(
                                   children: controller.list,
                                 ).paddingOnly(left: 35, top: 53),
                               ],
+                            ),
+                            AnimatedBuilder(
+                              builder: (BuildContext context, Widget? mychild) {
+                                return Transform.rotate(
+                                  angle:
+                                      animationController.value * 2.0 * math.pi,
+                                  child: mychild,
+                                );
+                              },
+                              animation: animationController,
+                              child: Container(
+                                height: Get.height * 0.8,
+                                width: Get.width,
+                                child: Image(
+                                  image: AssetImage(
+                                    'assets/images/image 1.png',
+                                  ),
+                                ),
+                              ),
                             ),
 
                             // button container

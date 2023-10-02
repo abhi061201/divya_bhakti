@@ -1,6 +1,8 @@
 import 'package:divya_bhakti/app/Route/appRoute.dart';
 import 'package:divya_bhakti/app/modules/home/view/HomeView.dart';
-import 'package:divya_bhakti/app/modules/japa%20count/view/japa_view.dart';
+import 'package:divya_bhakti/app/modules/Naam%20Jap/view/japa_view.dart';
+import 'package:divya_bhakti/app/modules/japa%20count/view/count_jap_take_input.dart';
+import 'package:divya_bhakti/app/modules/japa%20count/view/count_jap_view.dart';
 import 'package:divya_bhakti/app/setting/view/setting_view.dart';
 import 'package:divya_bhakti/app/ui/login_view.dart';
 import 'package:divya_bhakti/app/ui/signup_view.dart';
@@ -37,6 +39,14 @@ class appPages {
     GetPage(
       name: Routes.SettingView,
       page: () => SettingView(),
+    ),
+    GetPage(
+      name: Routes.CountJapTakeInputview,
+      page: () => Count_jap_take_input_view(),
+    ),
+    GetPage(
+      name: Routes.CountJapView,
+      page: () => CountJapView(),
     ),
   ];
 }

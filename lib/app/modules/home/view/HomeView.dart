@@ -181,6 +181,9 @@ class HomeView extends StatelessWidget {
                       borderRadius: 3,
                       // height: Get.height * 0.04,
                       width: Get.width * 0.3,
+                      callback: (){
+                        Get.toNamed(Routes.CountJapTakeInputview);
+                      }
                     ),
 
                     Row(

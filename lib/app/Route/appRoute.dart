@@ -10,5 +10,7 @@ Routes {
   static const HomeView= '/home_view';
   static const JapaView= '/japa_view';
   static const SettingView= '/Setting_view';
+  static const CountJapView= '/CountJapView';
+  static const CountJapTakeInputview= '/CountJapTakeInputview';
   
 }

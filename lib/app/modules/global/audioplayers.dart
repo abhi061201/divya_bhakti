@@ -1,11 +1,28 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:divya_bhakti/app/modules/global/snackbar.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Audio_player extends GetxController {
-  static final player = AudioPlayer();
+  AudioPlayer player = AudioPlayer();
   bool isplaying = false;
-  String playerid = player.playerId;
+
+  int playCount = 0;
+  void printtimer(int x) {
+    if (playCount >= x)
+      return;
+    else {
+      playCount++;
+      print('Started Audio: ' + playCount.toString());
+      Timer(Duration(seconds: 15), () {
+        printtimer(x);
+      });
+    }
+  }
+
   void playAudiofromAsset({String? audioLocation}) async {
     try {
       isplaying = true;
@@ -27,12 +44,15 @@ class Audio_player extends GetxController {
     }
   }
 
+  // player.onPlayerStateChanged
   void playInLoop({String? audioLocation}) {
     try {
       player.stop();
       isplaying = true;
       // player.release();
+
       playAudiofromAsset(audioLocation: audioLocation);
+
       player.setReleaseMode(ReleaseMode.loop);
     } catch (e) {
       isplaying = false;
@@ -56,6 +76,15 @@ class Audio_player extends GetxController {
     print('stopped audio');
     await player.stop();
     // player.dispose();
+  }
+
+  void playAudiotime(int x) {
+    stop();
+    printtimer(x);
+    playInLoop(audioLocation: 'audio/1234.mp3');
+    Timer(Duration(seconds: x * 15), () {
+      stop();
+    });
   }
 
   PlayerState checkState() {

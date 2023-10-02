@@ -37,7 +37,8 @@ dependencies:
   #for taking formated data
   intl: ^0.18.1
 
-  flip_card: ^0.7.0
+  #for page turn animation
+  page_flip: ^0.1.0
 
   
 

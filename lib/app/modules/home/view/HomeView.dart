@@ -67,7 +67,9 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.toNamed(Routes.SettingView);
+                          },
                           icon: Icon(
                             Icons.settings,
                             size: 20,

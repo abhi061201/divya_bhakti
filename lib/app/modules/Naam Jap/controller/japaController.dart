@@ -3,6 +3,7 @@ import 'package:divya_bhakti/app/modules/global/appcolor.dart';
 import 'package:divya_bhakti/app/modules/global/pageflip.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 class Japacontroller extends GetxController {
   List<Widget> list = <Widget>[].obs;
@@ -192,7 +193,9 @@ Widget pageWidget({int? index}) {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Share.share('Today i had done chanting for 100 times');
+                  },
                   icon: Icon(
                     Icons.share_outlined,
                     size: 20,

@@ -12,5 +12,6 @@ Routes {
   static const SettingView= '/Setting_view';
   static const CountJapView= '/CountJapView';
   static const CountJapTakeInputview= '/CountJapTakeInputview';
+  static const EditProfileView= '/EditProfileView';
   
 }

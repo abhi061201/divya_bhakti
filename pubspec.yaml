@@ -40,6 +40,18 @@ dependencies:
   #for page turn animation
   page_flip: ^0.1.0
 
+  google_fonts: ^5.1.0
+ 
+  firebase_auth: ^4.7.3
+  
+ #for uid
+  uuid: 
+
+# for share send
+  share_plus: 
+  image_picker: ^1.0.4
+  
+
   
 
 flutter_native_splash:

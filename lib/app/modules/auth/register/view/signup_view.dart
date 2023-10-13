@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:divya_bhakti/app/Route/appRoute.dart';
+import 'package:divya_bhakti/app/modules/auth/register/controller/sign_up_controller.dart';
+import 'package:divya_bhakti/app/modules/global/appcolor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class signup_view extends StatelessWidget {
   signup_view({super.key});
-
+  signUpController controller = Get.put(signUpController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,23 +23,7 @@ class signup_view extends StatelessWidget {
             fit: BoxFit.fill),
       ),
       child: Scaffold(
-        // backgroundColor:
         backgroundColor: Colors.transparent,
-        // body: Container(
-        //   width: Get.width,
-        //   height: Get.height,
-        //   decoration: BoxDecoration(
-        //     borderRadius: BorderRadius.circular(
-        //       20,
-        //     ),
-        //     gradient: LinearGradient(
-        //       colors: [Colors.red],
-        //     ),
-        //   ),
-        //   child: Column(
-
-        //   ),
-        // ),
         body: SafeArea(
           child: Opacity(
             opacity: 0.8,
@@ -44,7 +32,6 @@ class signup_view extends StatelessWidget {
               width: Get.width,
               margin: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                // color: Colors.red,
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -75,20 +62,22 @@ class signup_view extends StatelessWidget {
                         fit: BoxFit.fill,
                       ),
                     ),
-                    textfield(hintText: 'Name'),
                     textfield(
-                      hintText: 'Mobile Number',
-                      keyboardType: TextInputType.number,
-                      keyLength: 10,
-                    ),
+                        hintText: 'Name',
+                        controller: controller.nameController),
                     textfield(
-                      hintText: 'Email',
-                      keyboardType: TextInputType.emailAddress,
-                    ),
+                        hintText: 'Mobile Number',
+                        keyboardType: TextInputType.number,
+                        keyLength: 10,
+                        controller: controller.phone_no_Controller),
                     textfield(
-                      hintText: 'Password',
-                      keyboardType: TextInputType.visiblePassword,
-                    ),
+                        hintText: 'Email',
+                        keyboardType: TextInputType.emailAddress,
+                        controller: controller.emailcontroller),
+                    textfield(
+                        hintText: 'Password',
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: controller.password_controller),
                     textfield(
                       hintText: 'Confirm Password',
                       keyboardType: TextInputType.visiblePassword,
@@ -98,39 +87,42 @@ class signup_view extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            InkWell(
-                              onTap: () {},
-                              child: Container(
-                                margin: EdgeInsets.all(5),
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 18,
-                                  vertical: 10,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Color(
-                                    0xffD91309,
+                            Obx(
+                              () => controller.showCircle.value == false
+                                  ? InkWell(
+                                      onTap: () {
+                                        print('tapped');
+                                        controller.signUpUsingEmail_Password();
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.all(5),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 18,
+                                          vertical: 10,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Color(
+                                            0xffD91309,
+                                          ),
+                                          border: Border.all(
+                                            color: Colors.yellow,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'Sign Up',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : CircularProgressIndicator(
+                                    color: appcolor.yellowColor,
                                   ),
-                                  border: Border.all(
-                                    color: Colors.yellow,
-                                  ),
-                                  // boxShadow: <BoxShadow>[
-                                  //   BoxShadow(
-                                  //       color: Colors.black54,
-                                  //       blurRadius: 15.0,
-                                  //       offset: Offset(0.0, 0.75))
-                                  // ],
-                                  borderRadius: BorderRadius.circular(
-                                    8,
-                                  ),
-                                ),
-                                child: Text(
-                                  'Sign Up',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            )
                           ],
                         ),
                       ],
@@ -160,10 +152,9 @@ class signup_view extends StatelessWidget {
                               TextSpan(
                                 text: 'Privacy Policy',
                                 style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.yellow,
-                                  fontFamily: 'Imprica'
-                                ),
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: Colors.yellow,
+                                    fontFamily: 'Imprica'),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {},
                               ),
@@ -180,10 +171,7 @@ class signup_view extends StatelessWidget {
                               fontSize: 15,
                             ),
                             children: [
-                              TextSpan(
-                                  text:
-                                      'Have a Divya Bhakti account? '),
-                              
+                              TextSpan(text: 'Have a Divya Bhakti account? '),
                               TextSpan(
                                 text: 'Log In',
                                 style: TextStyle(
@@ -210,43 +198,44 @@ class signup_view extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget textfield(
-    {String? hintText,
-    TextEditingController? controller,
-    TextInputType? keyboardType,
-    int? keyLength}) {
-  return Container(
-    width: Get.width * 0.75,
-    child: TextFormField(
-      keyboardType: keyboardType,
-      style: TextStyle(
-        color: Colors.white,
-      ),
-      maxLength: keyLength,
-      cursorColor: Colors.white,
-      decoration: InputDecoration(
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.white,
-          ),
-        ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.white,
-          ),
-        ),
-        // counterStyle: TextStyle(color: Colors.white),
-        counter: Offstage(),
-        hintText: '${hintText}',
-        hintStyle: TextStyle(
+  Widget textfield(
+      {String? hintText,
+      TextEditingController? controller,
+      TextInputType? keyboardType,
+      int? keyLength}) {
+    return Container(
+      width: Get.width * 0.75,
+      child: TextFormField(
+        controller: controller,
+        keyboardType: keyboardType,
+        style: TextStyle(
           color: Colors.white,
         ),
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: 0,
+        maxLength: keyLength,
+        cursorColor: Colors.white,
+        decoration: InputDecoration(
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+            ),
+          ),
+          // counterStyle: TextStyle(color: Colors.white),
+          counter: Offstage(),
+          hintText: '${hintText}',
+          hintStyle: TextStyle(
+            color: Colors.white,
+          ),
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 0,
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }

@@ -1,4 +1,6 @@
 import 'package:divya_bhakti/app/Route/appRoute.dart';
+import 'package:divya_bhakti/app/modules/auth/login/controller/login_controller.dart';
+import 'package:divya_bhakti/app/modules/global/appcolor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,7 +9,7 @@ import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 class login_view extends StatelessWidget {
   login_view({super.key});
-
+  loginController controller = loginController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,23 +23,7 @@ class login_view extends StatelessWidget {
             fit: BoxFit.fill),
       ),
       child: Scaffold(
-        // backgroundColor:
         backgroundColor: Colors.transparent,
-        // body: Container(
-        //   width: Get.width,
-        //   height: Get.height,
-        //   decoration: BoxDecoration(
-        //     borderRadius: BorderRadius.circular(
-        //       20,
-        //     ),
-        //     gradient: LinearGradient(
-        //       colors: [Colors.red],
-        //     ),
-        //   ),
-        //   child: Column(
-
-        //   ),
-        // ),
         body: SafeArea(
           child: Opacity(
             opacity: 0.8,
@@ -46,7 +32,6 @@ class login_view extends StatelessWidget {
               width: Get.width,
               margin: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                // color: Colors.red,
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -78,56 +63,55 @@ class login_view extends StatelessWidget {
                       ),
                     ),
                     textfield(
-                      hintText: 'Email',
-                      keyboardType: TextInputType.emailAddress,
-                    ),
+                        hintText: 'Email',
+                        keyboardType: TextInputType.emailAddress,
+                        controller: controller.emailController),
                     textfield(
-                      hintText: 'Password',
-                      keyboardType: TextInputType.visiblePassword,
-                    ),
+                        hintText: 'Password',
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: controller.password_controller),
                     SizedBox(
                       height: 10,
                     ),
+                    
                     Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            InkWell(
-                              onTap: () {
-                                Get.offAllNamed(Routes.HomeView);
-                              },
-                              child: Container(
-                                margin: EdgeInsets.all(5),
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 18,
-                                  vertical: 10,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Color(
-                                    0xffD91309,
-                                  ),
-                                  border: Border.all(
-                                    color: Colors.yellow,
-                                  ),
-                                  // boxShadow: <BoxShadow>[
-                                  //   BoxShadow(
-                                  //       color: Colors.black54,
-                                  //       blurRadius: 15.0,
-                                  //       offset: Offset(0.0, 0.75))
-                                  // ],
-                                  borderRadius: BorderRadius.circular(
-                                    8,
-                                  ),
-                                ),
-                                child: Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            Obx(() => controller.show_Circle == false
+                                ? InkWell(
+                                    onTap: () {
+                                      controller.FirebaseLogin();
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.all(5),
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 18,
+                                        vertical: 10,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Color(
+                                          0xffD91309,
+                                        ),
+                                        border: Border.all(
+                                          color: Colors.yellow,
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                          8,
+                                        ),
+                                      ),
+                                      child: Text(
+                                        'Login',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : CircularProgressIndicator(
+                                    color: appcolor.yellowColor,
+                                  ))
                           ],
                         ),
                         Container(
@@ -163,6 +147,7 @@ class login_view extends StatelessWidget {
                         )
                       ],
                     ).paddingOnly(left: 15, right: 15),
+                    
                     SizedBox(
                       height: Get.height * 0.03,
                     ),
@@ -184,7 +169,7 @@ class login_view extends StatelessWidget {
                                 ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    // Get.offAllNamed(()=>Routes)
+                                    Get.toNamed(Routes.SIGNUP_VIEW);
                                   },
                               ),
                             ]),
@@ -218,6 +203,7 @@ Widget textfield({
       children: [
         Expanded(
           child: TextFormField(
+            controller: controller,
             keyboardType: keyboardType,
             style: TextStyle(
               color: Colors.white,

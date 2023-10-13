@@ -1,3 +1,4 @@
+import 'package:divya_bhakti/app/Route/appRoute.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,9 @@ Widget CustomBottomNavigationBar() {
             title: 'Home',
             icondata_border: Icons.home_outlined,
             iconData: Icons.home,
+            callback: (){
+              Get.offAllNamed(Routes.HomeView);
+            }
           ),
           bottombarWidget(
             title: 'Search',

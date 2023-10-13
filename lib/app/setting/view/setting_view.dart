@@ -53,7 +53,7 @@ class SettingView extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          'Tuesday, Sept 25 ',
+                          'Tuesday, Oct 03 ',
                           style: TextStyle(
                             color: appcolor.yellowColor,
                           ),
@@ -63,14 +63,6 @@ class SettingView extends StatelessWidget {
                           onPressed: () {},
                           icon: Icon(
                             Icons.notifications,
-                            size: 20,
-                            color: appcolor.yellowColor,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.settings,
                             size: 20,
                             color: appcolor.yellowColor,
                           ),
@@ -93,7 +85,9 @@ class SettingView extends StatelessWidget {
                     SizedBox(
                       height: Get.height * 0.005,
                     ),
-                    ItemWidget('Edit Profile', Icons.edit),
+                    ItemWidget('Edit Profile', Icons.edit, callbackAction: () {
+                      Get.toNamed(Routes.EditProfileView);
+                    }),
                     Divider(
                         color: appcolor.yellowColor, thickness: 1, height: 0),
                     ItemWidget('Change Password', Icons.lock),
@@ -199,27 +193,30 @@ Widget headingContainer(String title) {
   );
 }
 
-Widget ItemWidget(String title, IconData iconData) {
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 4, horizontal: 5),
-    margin: EdgeInsets.symmetric(vertical: 0),
-    width: Get.width,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5), color: Color(0xffFD0505)),
-    child: Row(
-      children: [
-        Icon(
-          iconData,
-          color: appcolor.yellowColor,
-        ),
-        Text(
-          title,
-          style: TextStyle(
-              color: appcolor.yellowColor,
-              fontSize: 15,
-              fontWeight: FontWeight.w500),
-        ),
-      ],
+Widget ItemWidget(String title, IconData iconData, {Callback? callbackAction}) {
+  return InkWell(
+    onTap: callbackAction,
+    child: Container(
+      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 5),
+      margin: EdgeInsets.symmetric(vertical: 0),
+      width: Get.width,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5), color: Color(0xffFD0505)),
+      child: Row(
+        children: [
+          Icon(
+            iconData,
+            color: appcolor.yellowColor,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+                color: appcolor.yellowColor,
+                fontSize: 15,
+                fontWeight: FontWeight.w500),
+          ),
+        ],
+      ),
     ),
   );
 }

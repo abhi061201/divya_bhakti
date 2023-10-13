@@ -158,33 +158,33 @@ class _JapaViewState extends State<JapaView> with TickerProviderStateMixin {
                                   children: value.list,
                                 ).paddingOnly(left: 35, top: 53),
 
-                                // AnimatedBuilder(
-                                //   builder:
-                                //       (BuildContext context, Widget? mychild) {
-                                //     return Transform.rotate(
-                                //       angle: animationController.value *
-                                //           2.0 *
-                                //           math.pi,
-                                //       child: mychild,
-                                //     );
-                                //   },
-                                //   animation: animationController,
-                                //   child: Container(
-                                //     height: Get.height * 0.8,
-                                //     width: Get.width,
-                                //     child: Image(
-                                //       image: AssetImage(
-                                //         'assets/images/image 1.png',
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
-                                Center(
-                                    child: Text(
-                                        '${pageflipcontroller.currentState?.pageNumber.toString()}',
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 30))),
+                                AnimatedBuilder(
+                                  builder:
+                                      (BuildContext context, Widget? mychild) {
+                                    return Transform.rotate(
+                                      angle: animationController.value *
+                                          2.0 *
+                                          math.pi,
+                                      child: mychild,
+                                    );
+                                  },
+                                  animation: animationController,
+                                  child: Container(
+                                    height: Get.height * 0.8,
+                                    width: Get.width,
+                                    child: Image(
+                                      image: AssetImage(
+                                        'assets/images/image 1.png',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                // Center(
+                                //     child: Text(
+                                //         '${pageflipcontroller.currentState?.pageNumber.toString()}',
+                                //         style: TextStyle(
+                                //             color: Colors.black,
+                                //             fontSize: 30))),
 
                                 // button container
                                 Column(
